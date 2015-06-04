@@ -1,0 +1,22 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="PlayerCardStyle" parent="CardView.Dark">
+        <item name="android:layout_width">@dimen/card_width</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="cardCornerRadius">1dp</item>
+        <item name="contentPadding">10dp</item>
+        <item name="cardElevation">10dp</item>
+    </style>
+    <style name="PlayerNumberStyle" parent="Base.TextAppearance.AppCompat.Title">
+
+    </style>
+    <style name="PlayerNameStyle" parent="Base.TextAppearance.AppCompat.Title">
+
+    </style>
+
+</resources>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">mafia</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!--    Player Registration Dialog start-->
+    <string name="registration_player_dialog_title">Регистрация игрока</string>
+    <string name="registration_player_dialog_content">Введите имя и номер игрока</string>
+    <string name="registration_player_dialog_hint_number">Введите номер</string>
+    <string name="registration_player_dialog_prefill_number">1</string>
+    <string name="registration_player_dialog_hint_name">Введите имя</string>
+    <string name="registration_player_dialog_prefill_name">Вася</string>
+    <!--    Player Registration Dialog end-->
+
+</resources>

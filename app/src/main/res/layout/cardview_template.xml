@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/PlayerCardStyle">
+    <TextView
+        style="@style/PlayerNameStyle"
+        android:id="@+id/PlayerName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        style="@style/PlayerNumberStyle"
+        android:id="@+id/PlayerNumber"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        />
+
+</android.support.v7.widget.CardView>
