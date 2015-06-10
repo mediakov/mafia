@@ -11,30 +11,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
-import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 public class CardAdapter extends BaseAdapter {
     private Context mContext;
     final String LOG_TAG = "myLogs";
-    public List<String> list = new ArrayList();
 
-    public CardAdapter(Context c, List inboundList) {
+    public CardAdapter(Context c ) {
         mContext = c;
-        list = inboundList;
+//        mData = inboundList;
+//        mKeys = mData.keySet().toArray(new Integer[mData.size()]);
     }
 
     public int getCount() {
-        return list.size();
+        return Game.getPlayerCount();
     }
 
     public Object getItem(int position) {
-        return list.get(position);
+        return Game.getPlayerByPosition(position);
     }
 
     public long getItemId(int position) {
-        return position;
+        return Game.getPlayerNumberByPosition(position);
     }
 
     // create a new CardView for each item referenced by the Adapter
@@ -48,9 +47,11 @@ public class CardAdapter extends BaseAdapter {
         } else {
             cardView = (CardView) convertView;
         }
-        cardView.setId(position + 1);
-        TextView tv = (TextView) cardView.getChildAt(0);
-        tv.setText(list.get(position));
+        TextView playerNameTv = (TextView) cardView.findViewById(R.id.PlayerName);
+        TextView playerNumberTv = (TextView) cardView.findViewById(R.id.PlayerNumber);
+        cardView.setId((int) Game.getPlayerNumberByPosition(position));
+        playerNameTv.setText(Game.getPlayerByPosition(position).getName());
+        playerNumberTv.setText(Game.getPlayerByPosition(position).getNumber().toString());
         Log.d(LOG_TAG, "ID of view: " + (cardView.getId()));
         return cardView;
     }

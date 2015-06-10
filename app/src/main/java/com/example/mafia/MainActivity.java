@@ -12,33 +12,36 @@ import android.view.animation.LinearInterpolator;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    List<String> playerArray = new ArrayList();
-    public int i;
+    Hashtable<Integer, String> playerArray = new Hashtable<Integer, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final GridView gridView = (GridView) findViewById(R.id.mainCardGrid);
-        final CardAdapter cardAdapter = new CardAdapter(this, playerArray);
+        final CardAdapter cardAdapter = new CardAdapter(this);
         gridView.setAdapter(cardAdapter);
 
         final MaterialDialog.ButtonCallback inputCallback = new MaterialDialog.ButtonCallback() {
             public void onPositive(MaterialDialog dialog) {
-                LinearLayout playerData = new LinearLayout(dialog.getContext());
                 EditText playerName = new EditText(dialog.getContext());
-                playerData = (LinearLayout) dialog.getCustomView();
-                playerName = (EditText) playerData.getChildAt(1);
-                playerArray.add(playerName.getText().toString());
+                EditText playerNumber = new EditText(dialog.getContext());
+                playerName = (EditText) dialog.getCustomView().findViewById(R.id.PlayerName);
+                playerNumber = (EditText) dialog.getCustomView().findViewById(R.id.PlayerNumber);
+                Integer playerNumberInt = Integer.parseInt(playerNumber.getText().toString());
+                Game.addPlayer(playerNumberInt, playerName.getText().toString());
                 cardAdapter.notifyDataSetChanged();
-                gridView.smoothScrollToPosition(i);
+                gridView.smoothScrollToPosition(playerNumberInt);
             }
 
             public void onNegative(MaterialDialog dialog) {
@@ -47,28 +50,17 @@ public class MainActivity extends AppCompatActivity {
         };
         final View.OnClickListener regFabListener = new View.OnClickListener() {
             public void onClick(final View v) {
-                Log.d("MY_LOG", "Начата генерация диалога");
                 final MaterialDialog.Builder builder = new MaterialDialog.Builder(v.getContext());
+                TextView playerNumber = new TextView(builder.getContext());
                 builder.title(R.string.registration_player_dialog_title);
-                builder.content(R.string.registration_player_dialog_content);
-                Log.d("MY_LOG", "Установлены title и content");
-                LinearLayout playerRegFieldsHolder = new LinearLayout(v.getContext());
-/*                EditText playerNumber = new EditText(v.getContext());
-                playerNumber.setInputType(2);
-                EditText playerName = new EditText(v.getContext());
-                playerRegFieldsHolder.addView(playerNumber);
-                playerRegFieldsHolder.addView(playerName);*/
                 builder.customView(R.layout.player_registration_dialog, true);
-                Log.d("MY_LOG", "Добавлен layout c формой");
                 builder.positiveText(android.R.string.ok);
                 builder.negativeText(android.R.string.cancel);
-                Log.d("MY_LOG", "Установлены кнопки");
                 builder.callback(inputCallback);
-                Log.d("MY_LOG", "Установлен callback");
                 MaterialDialog playerRegistrationDialog = builder.build();
-                Log.d("MY_LOG", "Построен диалог");
+                playerNumber = (TextView) playerRegistrationDialog.getCustomView().findViewById(R.id.PlayerNumber);
+                playerNumber.setText("1");
                 playerRegistrationDialog.show();
-
             }
         };
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.FloatingActionButtonID);
