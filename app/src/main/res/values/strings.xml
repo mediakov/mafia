@@ -12,4 +12,6 @@
     <string name="registration_player_dialog_prefill_name">Вася</string>
     <!--    Player Registration Dialog end-->
 
+    <string name="no_available_place_in_game_alert">За столом больше нет места</string>
+
 </resources>

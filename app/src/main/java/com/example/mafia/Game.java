@@ -6,9 +6,9 @@ import android.util.SparseArray;
  * Created by Юрий on 10.06.2015.
  */
 public class Game {
-    private static SparseArray<Player> playerList = new SparseArray<>();
+    private SparseArray<Player> playerList = new SparseArray<>();
 
-    public static boolean addPlayer(Integer number, String name) {
+    public boolean addPlayer(Integer number, String name) {
 
         if (playerList.indexOfKey(number) < 0) {
             playerList.put(number, new Player(name, number));
@@ -18,15 +18,23 @@ public class Game {
         }
     }
 
-    public static Integer getPlayerCount() {
+    public Integer getPlayerCount() {
         return playerList.size();
     }
 
-    public static Player getPlayerByPosition(Integer index) {
+    public Player getPlayerByPosition(Integer index) {
         return playerList.valueAt(index);
     }
-    public static long getPlayerNumberByPosition(Integer position){
+    public long getPlayerNumberByPosition(Integer position){
         return getPlayerByPosition(position).getNumber();
 
+    }
+    public int getAvailableNumber() {
+        for (int i=1;i<=10;i++){
+            if (playerList.indexOfKey(i)<0) {
+                return i;
+            }
+        }
+                return 11;
     }
 }
