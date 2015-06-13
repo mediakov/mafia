@@ -13,7 +13,7 @@
         <item name="cardElevation">10dp</item>
     </style>
     <style name="PlayerNumberStyle" parent="Base.TextAppearance.AppCompat.Title">
-
+        <item name="android:textSize">40sp</item>
     </style>
     <style name="PlayerNameStyle" parent="Base.TextAppearance.AppCompat.Title">
 

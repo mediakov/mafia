@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     playerRegistrationDialog.show();
                 }
                 else {
-                    Snackbar.make(findViewById(R.id.mainCardGrid),R.string.no_available_place_in_game_alert,Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.parentLayout),R.string.no_available_place_in_game_alert,Snackbar.LENGTH_SHORT).show();
                 }
             }
         };

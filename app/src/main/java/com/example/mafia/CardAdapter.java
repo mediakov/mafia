@@ -15,7 +15,6 @@ import android.widget.TextView;
 public class CardAdapter extends BaseAdapter {
     private Context mContext;
     private Game game;
-    final String LOG_TAG = "myLogs";
 
     public CardAdapter(Context c, Game game) {
         mContext = c;
@@ -51,7 +50,6 @@ public class CardAdapter extends BaseAdapter {
         cardView.setId((int) game.getPlayerNumberByPosition(position));
         playerNameTv.setText(game.getPlayerByPosition(position).getName());
         playerNumberTv.setText(game.getPlayerByPosition(position).getNumber().toString());
-        Log.d(LOG_TAG, "ID of view: " + (cardView.getId()));
         return cardView;
     }
 }
