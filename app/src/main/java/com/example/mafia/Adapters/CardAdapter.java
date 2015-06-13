@@ -1,16 +1,18 @@
-package com.example.mafia;
+package com.example.mafia.Adapters;
 /**
- * AdapterForMainGridView
+ * Adapter for playerlist with CardViews retrieving data from Game object
  */
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.mafia.Model.Game;
+import com.example.mafia.R;
 
 public class CardAdapter extends BaseAdapter {
     private Context mContext;

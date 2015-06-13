@@ -1,32 +1,52 @@
 package com.example.mafia;
 
+import android.content.Context;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.afollestad.materialdialogs.MaterialDialog;
-import java.util.Hashtable;
+import com.example.mafia.Adapters.CardAdapter;
+import com.example.mafia.Model.Game;
+
+class PlayerRegistrationDialogBuilder {
+
+    public MaterialDialog build(MaterialDialog.ButtonCallback inputCallback, Context v) {
+        Game game = Game.getInstance();
+        final MaterialDialog.Builder builder = new MaterialDialog.Builder(v);
+        builder.title(R.string.registration_player_dialog_title);
+        builder.customView(R.layout.player_registration_dialog, true);
+        builder.positiveText(android.R.string.ok);
+        builder.negativeText(android.R.string.cancel);
+        builder.callback(inputCallback);
+        MaterialDialog playerRegistrationDialog = builder.build();
+        TextView playerNumber = (TextView) playerRegistrationDialog.getCustomView().findViewById(R.id.PlayerNumber);
+        playerNumber.setText(String.valueOf(game.getAvailableNumber()));
+        return playerRegistrationDialog;
+    }
+
+}
+
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final Game game = new Game();
+        final Game game = Game.getInstance();
 //        Готовим GridView к работе
-        final GridView gridView = (GridView) findViewById(R.id.mainCardGrid);
+        final CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.parentLayout);
+        final GridView playerGrid = (GridView) findViewById(R.id.mainCardGrid);
         final CardAdapter cardAdapter = new CardAdapter(this, game);
-        gridView.setAdapter(cardAdapter);
+        playerGrid.setAdapter(cardAdapter);
 //        GridView готов
 
 //        Обрабатываем диалог регистрации игроков
@@ -37,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
                 Integer playerNumberInt = Integer.parseInt(playerNumber.getText().toString());
                 game.addPlayer(playerNumberInt, playerName.getText().toString());
                 cardAdapter.notifyDataSetChanged();
-                gridView.smoothScrollToPosition(playerNumberInt);
+                playerGrid.smoothScrollToPosition(playerNumberInt);
             }
+
             public void onNegative(MaterialDialog dialog) {
                 dialog.dismiss();
             }
@@ -46,28 +67,20 @@ public class MainActivity extends AppCompatActivity {
 
 //        Обрабатываем клик на FAB и генерируем диалоговое окно регистрации игрока
 //        Вынести генерацию диалога отдельно
-        final View.OnClickListener regFabListener = new View.OnClickListener() {
+        View.OnClickListener regFabListener = new View.OnClickListener() {
             public void onClick(final View v) {
                 if (game.getAvailableNumber() <= 10) {
-                    final MaterialDialog.Builder builder = new MaterialDialog.Builder(v.getContext());
-                    builder.title(R.string.registration_player_dialog_title);
-                    builder.customView(R.layout.player_registration_dialog, true);
-                    builder.positiveText(android.R.string.ok);
-                    builder.negativeText(android.R.string.cancel);
-                    builder.callback(inputCallback);
-                    MaterialDialog playerRegistrationDialog = builder.build();
-                    TextView playerNumber = (TextView) playerRegistrationDialog.getCustomView().findViewById(R.id.PlayerNumber);
-                    playerNumber.setText(String.valueOf(game.getAvailableNumber()));
-                    playerRegistrationDialog.show();
-                }
-                else {
-                    Snackbar.make(findViewById(R.id.parentLayout),R.string.no_available_place_in_game_alert,Snackbar.LENGTH_SHORT).show();
+                    PlayerRegistrationDialogBuilder builder = new PlayerRegistrationDialogBuilder();
+                    builder.build(inputCallback, v.getContext()).show();
+                } else {
+                    Snackbar.make(findViewById(R.id.parentLayout), R.string.no_available_place_in_game_alert, Snackbar.LENGTH_SHORT).show();
                 }
             }
         };
 //        Устанавливаем обработчик для FAB
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.FloatingActionButtonID);
         floatingActionButton.setOnClickListener(regFabListener);
+
     }
 
 

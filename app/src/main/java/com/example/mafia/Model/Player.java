@@ -1,5 +1,8 @@
-package com.example.mafia;
+package com.example.mafia.Model;
 
+/**
+ * Player class. Nothing to say here.
+ */
 public class Player {
 
     private String name;
