@@ -1,21 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/PlayerCardStyle">
+
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-    <TextView
-        style="@style/PlayerNameStyle"
-        android:id="@+id/PlayerName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
-    <TextView
-        style="@style/PlayerNumberStyle"
-        android:id="@+id/PlayerNumber"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/PlayerName"
+            style="@style/PlayerNameStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/PlayerNumber"
+            style="@style/PlayerNumberStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/editbutton"
+                style="@style/PlayerCardButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/card_edit_button_text" />
+            <Button
+                android:id="@+id/deletebutton"
+                style="@style/PlayerCardButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/card_delete_button_text" />
+
+        </LinearLayout>
+
     </LinearLayout>
 </android.support.v7.widget.CardView>

@@ -18,6 +18,7 @@
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
         android:stretchMode="columnWidth"
+        android:gravity="center_horizontal"
         tools:listitem="@layout/cardview_template" />
 
     <android.support.design.widget.FloatingActionButton

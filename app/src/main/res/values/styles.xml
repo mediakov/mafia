@@ -7,16 +7,23 @@
 
     <style name="PlayerCardStyle" parent="CardView.Dark">
         <item name="android:layout_width">@dimen/card_width</item>
-        <item name="android:layout_height">100dp</item>
-        <item name="cardCornerRadius">1dp</item>
-        <item name="contentPadding">10dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardCornerRadius">2dp</item>
         <item name="cardElevation">10dp</item>
     </style>
     <style name="PlayerNumberStyle" parent="Base.TextAppearance.AppCompat.Title">
-        <item name="android:textSize">40sp</item>
+        <item name="android:textSize">80sp</item>
+        <item name="android:layout_height">180dp</item>
     </style>
     <style name="PlayerNameStyle" parent="Base.TextAppearance.AppCompat.Title">
-
+        <item name="android:textSize">24sp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:layout_height">72dp</item>
     </style>
 
+    <style name="PlayerCardButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:padding">8dp</item>
+    </style>
 </resources>

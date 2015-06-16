@@ -13,5 +13,7 @@
     <!--    Player Registration Dialog end-->
 
     <string name="no_available_place_in_game_alert">За столом больше нет места</string>
+    <string name="card_edit_button_text">Редактировать</string>
+    <string name="card_delete_button_text">Удалить</string>
 
 </resources>
