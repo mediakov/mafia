@@ -7,7 +7,7 @@ import android.util.SparseArray;
  * Class is Singleton
  */
 public class Game {
-    private SparseArray<Player> playerList = new SparseArray<>();
+    private static SparseArray<Player> playerList = new SparseArray<>();
     private static Game instance;
 
     private Game() {}
@@ -19,14 +19,18 @@ public class Game {
         return instance;
 
     }
-    public boolean addPlayer(Integer number, String name) {
+    public Player addPlayer(Integer number, String name) {
 
-        if (playerList.indexOfKey(number) < 0) {
-            playerList.put(number, new Player(name, number));
-            return true;
-        } else {
-            return false;
-        }
+        if (playerList.indexOfKey(number) < 0 & number<=10) {
+            Player player = new Player(name,number);
+            playerList.put(number, player);
+            return player;
+            }
+        return null;
+    }
+    public void deletePlayer (Player player) {
+
+        playerList.delete(player.getNumber());
     }
 
     public Integer getPlayerCount() {
@@ -37,17 +41,24 @@ public class Game {
         return playerList.valueAt(index);
     }
 
-    public long getPlayerNumberByPosition(Integer position) {
+    public Integer getPlayerNumberByPosition(Integer position) {
         return getPlayerByPosition(position).getNumber();
+
 
     }
 
-    public int getAvailableNumber() {
+    public Integer getAvailableNumber() {
         for (int i = 1; i <= 10; i++) {
             if (playerList.indexOfKey(i) < 0) {
                 return i;
             }
         }
         return 11;
+    }
+
+    public boolean checkNumberIsAvailable (Integer number){
+
+        if (playerList.indexOfKey(number) < 0 ) {return true;} else {return false;}
+
     }
 }

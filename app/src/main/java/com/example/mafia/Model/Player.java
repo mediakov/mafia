@@ -20,5 +20,12 @@ public class Player {
     public Integer getNumber() {
         return this.number;
     }
+    public void changeNumber(Integer newNumber) {
 
+        this.number = newNumber;
+    }
+    public void changeName(String newName) {
+
+        this.name = newName;
+    }
 }

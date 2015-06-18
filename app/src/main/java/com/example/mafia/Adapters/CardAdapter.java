@@ -5,48 +5,47 @@ package com.example.mafia.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.example.mafia.Model.Game;
+import com.example.mafia.UI.PlayerRegistrationCard;
 
 public class CardAdapter extends BaseAdapter {
     private Context mContext;
-    private Game game;
-    private PlayerCardBuilder builder;
+    private SparseArray playerCardList;
 
-    public CardAdapter(Context c, PlayerCardBuilder builder) {
+    public CardAdapter(Context c, SparseArray playerCardList) {
         mContext = c;
-        this.builder = builder;
-        this.game = Game.getInstance();
-
+        this.playerCardList = playerCardList;
     }
 
     public int getCount() {
-        return game.getPlayerCount();
+        return playerCardList.size();
     }
 
     public Object getItem(int position) {
-        return game.getPlayerByPosition(position);
-    }
+        return playerCardList.valueAt(position);
+        }
 
     public long getItemId(int position) {
-        return game.getPlayerNumberByPosition(position);
+
+        return playerCardList.keyAt(position);
     }
 
     // create a new CardView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-        CardView cardView = new CardView(mContext);
-
+        PlayerRegistrationCard playerRegistrationCard;
         if (convertView == null) {
             // if it's not recycled, build a Card
-            cardView = builder.buildPlayerCard(mContext);
+          playerRegistrationCard = (PlayerRegistrationCard) playerCardList.get(position);
 
         } else {
-            cardView = (CardView) convertView;
+            playerRegistrationCard = (PlayerRegistrationCard) convertView;
+//            playerRegistrationCard = (PlayerRegistrationCard) playerCardList.get(position);
         }
-        cardView = builder.setPlayerInCard(cardView, position);
-        return cardView;
+        return playerRegistrationCard;
     }
 }
