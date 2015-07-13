@@ -21,7 +21,7 @@ public class Game {
     }
     public Player addPlayer(Integer number, String name) {
 
-        if (playerList.indexOfKey(number) < 0 & number<=10) {
+        if (checkNumberIsAvailable(number) & number<=10) {
             Player player = new Player(name,number);
             playerList.put(number, player);
             return player;

@@ -19,7 +19,7 @@
         android:horizontalSpacing="10dp"
         android:stretchMode="columnWidth"
         android:gravity="center_horizontal"
-        tools:listitem="@layout/cardview_template" />
+        tools:listitem="@layout/player_registration_card_template" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/FloatingActionButtonID"
