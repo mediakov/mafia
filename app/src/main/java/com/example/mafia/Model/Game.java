@@ -7,8 +7,9 @@ import android.util.SparseArray;
  * Class is Singleton
  */
 public class Game {
-    private static SparseArray<Player> playerList = new SparseArray<>();
     private static Game instance;
+
+    public static SparseArray<Player> playerList = new SparseArray<>();
 
     private Game() {}
     public static Game getInstance(){

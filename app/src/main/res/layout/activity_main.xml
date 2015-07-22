@@ -9,25 +9,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
-    <GridView
-        android:id="@+id/mainCardGrid"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/registrationCardGrid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="auto_fit"
-        android:columnWidth="@dimen/card_width"
+        android:gravity="center_horizontal"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
-        android:stretchMode="columnWidth"
-        android:gravity="center_horizontal"
-        tools:listitem="@layout/player_registration_card_template" />
+        />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/FloatingActionButtonID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/registrationCardGrid"
+        android:layout_alignEnd="@+id/registrationCardGrid"
+        android:layout_alignRight="@+id/registrationCardGrid"
         android:layout_gravity="end|bottom"
-        android:src="@drawable/ic_account_plus_black_48dp"
-        android:layout_alignBottom="@+id/mainCardGrid"
-        android:layout_alignRight="@+id/mainCardGrid"
-        android:layout_alignEnd="@+id/mainCardGrid" />
+        android:src="@drawable/ic_account_plus_black_48dp" />
 </android.support.design.widget.CoordinatorLayout>

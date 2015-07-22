@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.example.mafia.UI.PlayerRegistrationCard
     style="@style/PlayerCardStyle"
+    android:id="@+id/Card"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -32,7 +33,8 @@
                 style="@style/PlayerCardButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/card_edit_button_text" />
+                android:text="@string/card_edit_button_text"
+                android:clickable="false" />
             <Button
                 android:id="@+id/deletebutton"
                 style="@style/PlayerCardButton"

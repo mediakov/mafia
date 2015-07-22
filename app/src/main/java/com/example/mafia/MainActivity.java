@@ -4,14 +4,17 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.GridView;
 
-import com.example.mafia.Adapters.CardAdapter;
+import com.example.mafia.Adapters.GridAutofitLayoutManager;
+import com.example.mafia.Adapters.PlayerRegistrationCardAdapter;
 import com.example.mafia.Model.Game;
 import com.example.mafia.UI.PlayerRegistrationCard;
+import com.example.mafia.Adapters.SpacesItemDecoration;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -20,9 +23,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final Game game = Game.getInstance();
 //        Готовим GridView к работе
-        final GridView playerGrid = (GridView) findViewById(R.id.mainCardGrid);
-        final CardAdapter cardAdapter = new CardAdapter(this, PlayerRegistrationCard.cardList );
-        playerGrid.setAdapter(cardAdapter);
+        final RecyclerView registrationCardGrid = (RecyclerView) findViewById(R.id.registrationCardGrid);
+        final PlayerRegistrationCardAdapter cardAdapter = new PlayerRegistrationCardAdapter(Game.playerList);
+        registrationCardGrid.setAdapter(cardAdapter);
+        GridAutofitLayoutManager gridLayoutManager = new GridAutofitLayoutManager(registrationCardGrid.getContext(), getResources().getDimensionPixelSize(R.dimen.card_width));
+        registrationCardGrid.setLayoutManager(gridLayoutManager);
+        registrationCardGrid.addItemDecoration(new SpacesItemDecoration(getResources().getDimensionPixelSize(R.dimen.card_divide_space)));
+        registrationCardGrid.setItemAnimator(new DefaultItemAnimator());
+
 //        GridView готов
 
 
@@ -30,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener regFabListener = new View.OnClickListener() {
             public void onClick(final View v) {
                 if (game.getAvailableNumber() <= 10) {
-                    PlayerRegistrationCard.showAddDialog(v.getContext(), cardAdapter, playerGrid);
+                    PlayerRegistrationCard.showAddDialog(v.getContext(), cardAdapter, registrationCardGrid);
 
                 } else {
                     Snackbar.make(findViewById(R.id.parentLayout), R.string.no_available_place_in_game_alert, Snackbar.LENGTH_SHORT).show();

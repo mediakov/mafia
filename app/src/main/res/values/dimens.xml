@@ -4,5 +4,6 @@
     <dimen name="activity_vertical_margin">8dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="card_width">320dp</dimen>
+    <dimen name="card_divide_space">10dp</dimen>
     <dimen name="card_player_number_area_height">180dp</dimen>
 </resources>
